@@ -1,0 +1,125 @@
+install node.js
+npm install -g @angular/cli
+
+MUST RUN AS ADMINISTRATOR TO CMD
+ng new angular2 --skip-git 
+
+ERROR IN ANGULAR/CLI, YOU MUST ADD (maybe in the future angulat team will fix it)
+npm i --save-dev @angular-devkit/core
+
+npm install bootstrap@3
+
+nmp install fuelux
+
+ng serve
+// ako izbaci gresku, promeni i snimi component i onda proradi
+
+http://localhost:4200/
+
+FAKE JSON ONLINE: https://jsonplaceholder.typicode.com/
+
+ATOM IDE - add typescript // File->Settings->install-> atom-typescript(TypeStrong)
+------
+deploy
+https://stackoverflow.com/questions/40852931/how-can-i-deploy-an-angular-2-application-on-tomcat-server-windows-server-2012
+https://stackoverflow.com/questions/39018765/deploy-angular-2-app-with-webpack-to-tomcat-404-errors/44727035#44727035
+
+main.ts => (app) app.module.ts => app.component.ts
+------
+import{component} from '@angular/core'
+
+@Component({
+	selector: 'app-root',
+  
+	templateUrl: './app.component.html',
+  
+	styleUrls: ['./app.component.css']
+})
+
+export class AppComponent implements OnInit{ 
+	 public submitted: boolean;
+  
+	roomsearch : FromGroup;
+  
+	rooms: Room[];
+    
+	ngOnInit(){
+        
+		this.roomsearch = ...his.rooms = ROOMS;
+    } 
+}
+
+---------------------------
+Promise vs Observable
+Observable - An Observable is like a Stream (in many languages) 
+and allows to pass zero or more events where the callback is called for each event.
+Often Observable is preferred over Promise because it provides the features of Promise and more. 
+With Observable it doesn't matter if you want to handle 0, 1, or multiple events. 
+You can utilize the same API in each case.
+Observable also has the advantage over Promise to be cancelable. 
+If the result of an HTTP request to a server or some other expensive async operation isn't needed anymore, 
+the Subscription of an Observable allows to cancel the subscription, 
+while a Promise will eventually call the success or failed callback even when you don't need the notification or the result 
+it provides anymore.
+Observable provides operators like map, forEach, reduce, ... similar to an array
+
+A common operation in any web application is getting or posting data to a server. 
+Angular applications do this with the Http library, 
+which previously used Promises to operate in an asynchronous manner. 
+The updated Http library now incorporates Observables for triggering events and getting new data. 
+
+Let's take a quick look at this:
+export class MyApp {
+  private doctors = [];
+
+  constructor(http: Http) {
+    http.get('http://jsonplaceholder.typicode.com/users/')
+        .flatMap((data) => data.json())
+        .subscribe((data) => {
+          this.doctors.push(data);
+
+        });
+  }
+
+
+constructor(http: Http) {
+    http.get('http://jsonplaceholder.typicode.com/users/')
+        .flatMap((response) => response.json())
+        .filter((person) => person.id > 5)
+        .map((person) => "Dr. " + person.name)
+        .subscribe((data) => {
+          this.doctors.push(data);
+        });
+  }
+
+
+.map(n=>n.split('').reverse().join(''))
+        .subscribe(value => this.data = value);
+
+-----------------------------------
+
+
+ promise:
+        returns a single value
+        not cancellable
+        more readable code with try/catch and async/await
+ observable
+        works with multiple values over time
+        cancellable
+        supports map, filter, reduce and similar operators
+        use Reactive Extensions (RxJS)
+        an array whose items arrive asynchronously over time
+
+Both Promises and Observables provide us with abstractions that help 
+us deal with the asynchronous nature of our applications.
+
+Promise -  A Promise handles a single event when an async operation completes or fails
+----------------------------
+observable angular
+
+Observable.subscribe
+Observable.forEach
+
+observable - part of  ES7
+import {Observable} from 'rxjs/Observable';
+*ngFor
